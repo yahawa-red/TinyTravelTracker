@@ -20,7 +20,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-
+      
       - name: Install Android SDK tools
         shell: bash
         run: |
@@ -31,9 +31,13 @@ jobs:
           if [ -d "$ANDROID_HOME/cmdline-tools/cmdline-tools" ]; then
             mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
           fi
-          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses
+      
+          set +e
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --licenses >/dev/null 2>&1
+          set -e
+      
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" --install "platform-tools" "platforms;android-34" "build-tools;34.0.0"
-
+    
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
