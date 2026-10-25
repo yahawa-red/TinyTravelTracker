@@ -33,6 +33,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/tangram-android-0.17.1.aar')
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.core:core:1.13.1'
@@ -40,10 +41,8 @@ dependencies {
     implementation 'androidx.work:work-runtime:2.9.1'
 
     implementation 'ch.acra:acra:4.9.1'
-  
-    implementation 'com.github.tangrams.tangram-android:tangram:0.10.1'
-    implementation 'com.github.tajchert:nammu:1.2.0'
-    
+    implementation 'com.github.tajchert:Nammu:1.2.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.6.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.5'
