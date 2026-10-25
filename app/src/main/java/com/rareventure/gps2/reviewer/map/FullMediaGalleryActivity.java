@@ -1,22 +1,3 @@
-/** 
-    Copyright 2015 Tim Engler, Rareventure LLC
-
-    This file is part of Tiny Travel Tracker.
-
-    Tiny Travel Tracker is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Tiny Travel Tracker is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Tiny Travel Tracker.  If not, see <http://www.gnu.org/licenses/>.
-
-*/
 package com.rareventure.gps2.reviewer.map;
 
 import java.util.ArrayList;
@@ -25,9 +6,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,76 +87,3 @@ public class FullMediaGalleryActivity extends GTGActivity
 //	{
 //		this.mlts = mltArray;
 //		
-//        // Set the adapter to our custom adapter (below)
-//		 ((Gallery) getView().findViewById(R.id.gallery)).setAdapter(new MltAdapter(getActivity(), mltArray));
-//	}
-	
-	@Override
-	public void doOnResume() {
-		super.doOnResume();
-		adapter.notifyDataSetChanged();
-	}
-
-
-
-	private static class MltAdapter extends BaseAdapter
-	{
-		private ArrayList<MediaLocTime> mltArray;
-		private Context context;
-
-		public MltAdapter(Context context, ArrayList<MediaLocTime> mltArray)
-		{
-			this.context = context;
-			this.mltArray = mltArray;
-		}
-
-		@Override
-		public int getCount() {
-			return mltArray.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			MediaLocTime mlt = mltArray.get(position);
-			
-            ImageView i = new ImageView(context);
-            
-			if(mlt.isClean(context))
-			{
-	            Bitmap b = mltArray.get(position).getActualBitmap(context);
-
-	            i.setImageBitmap(b);
-	            i.setScaleType(ImageView.ScaleType.CENTER);
-	            
-//	            LayoutParams layoutParams = new Gallery.LayoutParams((int) (b.getWidth() * WEIRD_LAYOUT_WIDTH_MULTIPLIER),
-//	            		b.getHeight());
-//	            i.setLayoutParams(layoutParams);
-			}
-			else
-			{
-	            LayoutParams layoutParams = new Gallery.LayoutParams(0, 100);
-	            i.setLayoutParams(layoutParams);
-	            
-	            if(!mlt.isDeleted())
-	            	GTG.mediaLocTimeMap.notifyMltNotClean(mlt);
-			}
-            
-            return i;
-		}
-	}
-	
-	@Override
-	public int getRequirements() {
-		return GTG.REQUIREMENTS_FULL_PASSWORD_PROTECTED_UI;
-	}
-}
