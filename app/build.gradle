@@ -40,9 +40,10 @@ dependencies {
     implementation 'androidx.work:work-runtime:2.9.1'
 
     implementation 'ch.acra:acra:4.9.1'
-    implementation 'com.mapzen.tangram:tangram:0.10.1'
+  
+    implementation 'com.github.tangrams.tangram-android:tangram:0.10.1'
     implementation 'com.github.tajchert:nammu:1.2.0'
-
+    
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.6.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.5'
