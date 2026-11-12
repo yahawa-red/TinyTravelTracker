@@ -3,9 +3,9 @@ name: Android CI2
 on:
   workflow_dispatch:
   push:
-    branches: [ modernize-android-14 ]
+    branches: [ androidx-migration ]
   pull_request:
-    branches: [ modernize-android-14 ]
+    branches: [ androidx-migration ]
 
 jobs:
   build:
